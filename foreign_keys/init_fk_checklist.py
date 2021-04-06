@@ -5,13 +5,6 @@ import pyodbc
 
 def init_inspection_checklist_fk(conn, cur):
     try:
-        cur.execute("""ALTER TABLE INSPECTION_CHECKLIST ADD INSPECTION_ID bigint FOREIGN KEY 
-        REFERENCES INSPECTION(INSPECTION_ID) """)
-        conn.commit()
-        print("FK INSPECTION_CHECKLIST INSPECTION_ID set")
-    except pyodbc.ProgrammingError as e:
-        print("  FK INSPECTION_CHECKLIST INSPECTION_ID already set")
-    try:
         cur.execute("""ALTER TABLE INSPECTION_CHECKLIST ADD FDID bigint FOREIGN KEY 
         REFERENCES FDID(FDID) """)
         conn.commit()
