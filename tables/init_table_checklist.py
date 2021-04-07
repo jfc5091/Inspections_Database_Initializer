@@ -32,20 +32,6 @@ def init_inspection_checklist_item_table(conn, cur):
     return
 
 
-def init_inspection_checklist_item_status_table(conn, cur):
-    if cur.tables(table='INSPECTION_CHECKLIST_ITEM_STATUS', tableType='TABLE').fetchone():
-        # if you add columns other than basic add here and add below
-        print("  INSPECTION_CHECKLIST_ITEM_STATUS exists")
-    else:
-        cur.execute("""CREATE TABLE INSPECTION_CHECKLIST_ITEM_STATUS (
-           INSPECTION_CHECKLIST_ITEM_STATUS_ID bigint NOT NULL IDENTITY(1,1) PRIMARY KEY,
-           STATUS varchar(255)
-           )""")
-        print("INSPECTION_CHECKLIST_ITEM_STATUS created")
-    conn.commit()
-    return
-
-
 def init_fire_code_table(conn, cur):
     if cur.tables(table='FIRE_CODE', tableType='TABLE').fetchone():
         # if you add columns other than basic add here and add below
@@ -112,7 +98,6 @@ def init_inspection_violation_status_table(conn, cur):
 def init_all(conn, cur):
     init_inspection_checklist_table(conn, cur)
     init_inspection_checklist_item_table(conn, cur)
-    init_inspection_checklist_item_status_table(conn, cur)
     init_fire_code_table(conn, cur)
     init_inspection_violation_table(conn, cur)
     init_inspection_violation_image_table(conn, cur)

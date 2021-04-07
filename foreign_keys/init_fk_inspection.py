@@ -26,13 +26,6 @@ def init_inspection_fk(conn, cur):
     except pyodbc.ProgrammingError as e:
         print("  FK INSPECTION INSPECTION_CHECKLIST_ID already set")
     try:
-        cur.execute("""ALTER TABLE INSPECTION ADD INSPECTION_CHECKLIST_ID bigint FOREIGN KEY 
-        REFERENCES INSPECTION_CHECKLIST(INSPECTION_CHECKLIST_ID) """)
-        conn.commit()
-        print("FK INSPECTION INSPECTION_CHECKLIST_ID set")
-    except pyodbc.ProgrammingError as e:
-        print("  FK INSPECTION INSPECTION_CHECKLIST_ID already set")
-    try:
         cur.execute("""ALTER TABLE INSPECTION ADD FDID bigint FOREIGN KEY 
         REFERENCES FDID(FDID) """)
         conn.commit()
