@@ -35,6 +35,24 @@ def init_inspection_fk(conn, cur):
     return
 
 
+def init_inspection_image_fk(conn, cur):
+    try:
+        cur.execute("""ALTER TABLE INSPECTION_IMAGE ADD INSPECTION_ID bigint FOREIGN KEY 
+        REFERENCES INSPECTION(INSPECTION_ID) """)
+        conn.commit()
+        print("FK INSPECTION_IMAGE USER_ID set")
+    except pyodbc.ProgrammingError as e:
+        print("  FK INSPECTION_IMAGE USER_ID already set")
+    try:
+        cur.execute("""ALTER TABLE INSPECTION_IMAGE ADD FDID bigint FOREIGN KEY 
+        REFERENCES FDID(FDID) """)
+        conn.commit()
+        print("FK INSPECTION_IMAGE FDID set")
+    except pyodbc.ProgrammingError as e:
+        print("  FK INSPECTION_IMAGE FDID already set")
+    return
+
+
 def init_inspector_fk(conn, cur):
     try:
         cur.execute("""ALTER TABLE INSPECTOR ADD USER_ID bigint FOREIGN KEY 
@@ -73,6 +91,7 @@ def init_inspection_action_fk(conn, cur):
 
 def init_all(conn, cur):
     init_inspection_fk(conn, cur)
+    init_inspection_image_fk(conn, cur)
     init_inspector_fk(conn, cur)
     init_inspection_action_fk(conn, cur)
     return

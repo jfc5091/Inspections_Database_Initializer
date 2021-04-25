@@ -21,6 +21,20 @@ def init_inspection_table(conn, cur):
     return
 
 
+def init_inspection_image_table(conn, cur):
+    if cur.tables(table='INSPECTION_IMAGE', tableType='TABLE').fetchone():
+        # if you add columns other than basic add here and add below
+        print("  INSPECTION_IMAGE exists")
+    else:
+        cur.execute("""CREATE TABLE INSPECTION_IMAGE (
+           INSPECTION_IMAGE_ID bigint NOT NULL IDENTITY(1,1) PRIMARY KEY,
+           IMAGE_URL varchar(255)
+           )""")
+        print("INSPECTION_IMAGE created")
+    conn.commit()
+    return
+
+
 def init_inspector_table(conn, cur):
     if cur.tables(table='INSPECTOR', tableType='TABLE').fetchone():
         # if you add columns other than basic add here and add below
@@ -56,6 +70,7 @@ def init_inspection_action_table(conn, cur):
 
 def init_all(conn, cur):
     init_inspection_table(conn, cur)
+    init_inspection_image_table(conn, cur)
     init_inspector_table(conn, cur)
     init_inspection_action_table(conn, cur)
     return

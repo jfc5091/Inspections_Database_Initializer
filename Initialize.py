@@ -53,13 +53,16 @@ def main():
                       'UID=FireRMS;'
                       'PWD=FireAdmin;')
     """
+
     conn = pyodbc.connect('Driver={SQL Server};'
                           'Server=DESKTOP-69SKM75\SQLEXPRESS;'
                           'Database=INSPECTIONS;'
                           'UID=frtAdmin;'
                           'PWD=TurtleTeacher4ever;'
                           'Trusted_Connection=yes;')
-    
+
+    # conn = pyodbc.connect('Driver={SQL Server};Server=tcp:inspection.database.windows.net,1433;Database=INSPECTIONS;Uid=jfc5091;Pwd=superb!Drift&tune;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;')
+
     cur = conn.cursor()
     init_tables(conn, cur)
     cur.close()
