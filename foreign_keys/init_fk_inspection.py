@@ -55,12 +55,12 @@ def init_inspection_image_fk(conn, cur):
 
 def init_inspector_fk(conn, cur):
     try:
-        cur.execute("""ALTER TABLE INSPECTOR ADD USER_ID bigint FOREIGN KEY 
+        cur.execute("""ALTER TABLE INSPECTOR ADD USERS_ID bigint FOREIGN KEY 
         REFERENCES USERS(USER_ID) """)
         conn.commit()
-        print("FK INSPECTOR USER_ID set")
+        print("FK INSPECTOR USERS_ID set")
     except pyodbc.ProgrammingError as e:
-        print("  FK INSPECTOR USER_ID already set")
+        print("  FK INSPECTOR USERS_ID already set")
     try:
         cur.execute("""ALTER TABLE INSPECTOR ADD FDID bigint FOREIGN KEY 
         REFERENCES FDID(FDID) """)

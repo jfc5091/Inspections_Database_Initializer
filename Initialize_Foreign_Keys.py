@@ -42,6 +42,7 @@ def main():
                           'Trusted_Connection=yes;')
 
     # conn = pyodbc.connect('Driver={SQL Server};Server=tcp:inspection.database.windows.net,1433;Database=INSPECTIONS;Uid=jfc5091;Pwd=superb!Drift&tune;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;')
+
     cur = conn.cursor()
     init_fk(conn, cur)
     cur.close()
